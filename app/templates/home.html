@@ -3,6 +3,14 @@
 
 {% block content %}
 <div class="container border border-primary rounded mt-5 p-3">
-    <h1>Backend</h1>
+    {% if user.is_authenticated %}
+        <h3>Welcome, <strong>{{ user.first_name }}!</strong></h3>
+    {% else %}
+        <h3>Welcome, Guest!</h3>
+    {% endif %}
+</div>
+
+<div class="container border border-primary rounded mt-5 p-3">
+    <h1>User List</h1>
 </div>
 {% endblock %}

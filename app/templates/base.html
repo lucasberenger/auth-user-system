@@ -7,13 +7,13 @@
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-    <title>{% block title %} Login page {% endblock %}</title>
+    <title>{% block title %} Backend {% endblock %}</title>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-primary">
             <div class="container-fluid">
-              <a class="navbar-brand text-white fw-bold" href="#">Backends</a>
+              <a class="navbar-brand text-white fw-bold" href="#">Backend</a>
               <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon text-white"></span>
               </button>
@@ -22,15 +22,18 @@
                   <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" href="{% url 'app:home' %}">Home</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'app:about' %}">About</a>
-                  </li>
                   {% if user.is_authenticated %}
                   <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Hello, {{ user.first_name }}</a>
-                  </li> 
-                  <li class="nav-item">
-                    <a class="nav-link text-white" href="{% url 'app:logout' %}">logout</a>
+                    <a class="nav-link text-white" href="{% url 'app:userlist' %}">User List</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{ user.first_name }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item text-dark" href="{% url 'app:editprofile' %}">Edit Profile</a></li>
+                      <li><a class="dropdown-item text-dark" href="{% url 'app:logout' %}">Logout</a></li>
+                    </ul>
                   </li>
                   {% else %}
                   <li class="nav-item">

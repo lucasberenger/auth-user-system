@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 def home(request):
     return render(request, 'home.html')
@@ -17,7 +19,7 @@ def login(request):
             auth.login(request, user)
             return redirect("/")
         else:
-            messages.info(request, 'invalid credentials')
+            messages.info(request, 'Invalid credentials!')
             return redirect("/login")
     else:
         return render(request, 'login.html')
@@ -60,10 +62,13 @@ def register(request):
 def logout(request):
     auth.logout(request)
     return redirect('/')
-    
-def works(request):
-    return render(request, 'login.html')
         
+@login_required
+def userlist(request):
+    return render(request, 'userlist.html', {"current_user": request.user})
 
-def about(request):
-    return render(request, 'about.html')
+
+@login_required
+def editprofile(request):  
+   return render(request, 'profile.html')
+   

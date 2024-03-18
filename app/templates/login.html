@@ -10,10 +10,11 @@
     </form>
 </div>
 
-<div class="container">
-    {% for message in messages %}
-        <p class="text-danger">{{ message }}</p>
-    {% endfor %}
+{% for message in messages %}
+<div class="container mt-2 alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
+{% endfor %}
 
 {% endblock %}
