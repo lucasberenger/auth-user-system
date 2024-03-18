@@ -65,10 +65,17 @@ def logout(request):
         
 @login_required
 def userlist(request):
-    return render(request, 'userlist.html', {"current_user": request.user})
+    users = User.objects.all
+    return render(request, 'userlist.html', {"users": users})
 
 
 @login_required
-def editprofile(request):  
-   return render(request, 'profile.html')
+def changepassword(request):  
+#    if request.method=='POST':
+#        password1=request.POST['password1']
+#        password2=request.POST['password2']
+
+#        if password1==password2:
+#            user = User.objects.  
+   return render(request, 'changepassword.html')
    

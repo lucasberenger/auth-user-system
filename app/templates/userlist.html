@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container bg-secondary">
+<div class="container">
+    <h1>User List</h1>
+    <ul class="list-group list-group-numbered">
+        {% for user in users %}
+        <li class="list-group-item">{{ user.username }}</li>
+        {% endfor %}
+    </ul>
     
 </div>
 

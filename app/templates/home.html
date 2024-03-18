@@ -4,13 +4,14 @@
 {% block content %}
 <div class="container border border-primary rounded mt-5 p-3">
     {% if user.is_authenticated %}
-        <h3>Welcome, <strong>{{ user.first_name }}!</strong></h3>
+        <h1>Welcome, <strong>{{ user.first_name }}!</strong></h1>
     {% else %}
-        <h3>Welcome, Guest!</h3>
+        <h1>Welcome, Guest!</h1>
     {% endif %}
 </div>
 
 <div class="container border border-primary rounded mt-5 p-3">
-    <h1>User List</h1>
+    <p>This website was made to learn and practice login authentication with Django!</p>
+    
 </div>
 {% endblock %}
