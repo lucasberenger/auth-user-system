@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 
 
 def home(request):
@@ -71,11 +73,21 @@ def userlist(request):
 
 @login_required
 def changepassword(request):  
-#    if request.method=='POST':
-#        password1=request.POST['password1']
-#        password2=request.POST['password2']
+   if request.method=='POST':
+       new_password1=request.POST['new_password1']
+       new_password2=request.POST['new_password2']
 
-#        if password1==password2:
-#            user = User.objects.  
-   return render(request, 'changepassword.html')
-   
+       if new_password1==new_password2:
+           user = request.user
+           user.set_password(new_password1) 
+           user.save()
+           update_session_auth_hash(request, user)
+           messages.success(request, 'Password changed successfully!')
+           return redirect(reverse('changepassword'))
+       else:
+           messages.info(request, 'Password not matching!')  
+           return redirect(reverse('changepassword'))     
+   else:
+    return render(request, 'changepassword.html')
+
+# !!!!!! to-do: fix redirect reverse!!!!!
