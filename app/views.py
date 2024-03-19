@@ -83,10 +83,10 @@ def changepassword(request):
            user.save()
            update_session_auth_hash(request, user)
            messages.success(request, 'Password changed successfully!')
-           return redirect(reverse('changepassword'))
+           return redirect(reverse("app:changepassword"))
        else:
-           messages.info(request, 'Password not matching!')  
-           return redirect(reverse('changepassword'))     
+           messages.error(request, 'Password not matching!')
+           return redirect(reverse("app:changepassword"))     
    else:
     return render(request, 'changepassword.html')
 

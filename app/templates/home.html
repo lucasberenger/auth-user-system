@@ -2,7 +2,7 @@
 
 
 {% block content %}
-<div class="container border border-primary rounded mt-5 p-3">
+<div class="container border border-secondary rounded mt-5 p-3">
     {% if user.is_authenticated %}
         <h1>Welcome, <strong>{{ user.first_name }}!</strong></h1>
     {% else %}
@@ -10,7 +10,7 @@
     {% endif %}
 </div>
 
-<div class="container border border-primary rounded mt-5 p-3">
+<div class="container border border-secondary rounded mt-5 p-3">
     <p>This website was made to learn and practice login authentication with Django!</p>
     
 </div>
